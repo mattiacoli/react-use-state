@@ -13,7 +13,7 @@ export default function CardList({ codingLanguages }) {
           codingLanguages.map(language => (
             <li key={language.id} class="nav-item">
               <button
-                className="btn btn-primary"
+                className={`btn ${selectedLanguage?.id === language.id ? 'btn-warning' : 'btn-primary'}`}
                 onClick={() => setSelectedLanguage(language)
                 }
               >{language.title}</button>
