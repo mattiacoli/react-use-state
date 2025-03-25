@@ -1,4 +1,8 @@
-export default function Card({ codingLanguages }) {
+import { useState } from "react"
+
+export default function CardList({ codingLanguages }) {
+
+  const [selectedLanguage, setSelectedLanguage] = useState(null)
 
   return (
 
@@ -8,21 +12,26 @@ export default function Card({ codingLanguages }) {
         {
           codingLanguages.map(language => (
             <li key={language.id} class="nav-item">
-              <button className="btn btn-primary">{language.title}</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => setSelectedLanguage(language)
+                }
+              >{language.title}</button>
             </li>
-          ))
-        }
+          ))}
       </ul>
-
-      <div class="card">
-        {codingLanguages.map(language => (
-          <div class="card-body">
-            <h4>{language.title}</h4>
-            <p>{language.content}</p>
+      {selectedLanguage && (
+        <div className="card mt-4">
+          <div className="card-body">
+            <h5 className="card-title">{selectedLanguage.title}</h5>
+            <p className="card-text">{selectedLanguage.content}</p>
           </div>
-        ))}
+        </div>
+      )}
 
-      </div>
+
+
     </div>
   )
 }
+

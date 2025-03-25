@@ -1,7 +1,7 @@
-import { useState } from "react"
+
 import codingLanguages from "./data/codingLanguage"
 import Header from "./components/Header"
-import Card from "./components/Card"
+import CardList from "./components/Card"
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
 
       <Header />
 
-      <Card codingLanguages={codingLanguages} />
+      <CardList codingLanguages={codingLanguages} />
 
 
     </>
