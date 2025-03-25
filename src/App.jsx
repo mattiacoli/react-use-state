@@ -15,22 +15,23 @@ function App() {
           <div class="card-header">
 
             <ul class="nav nav-pills card-header-pills gap-3">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">HTML</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">CSS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active">JavaScript</a>
-              </li>
+              {
+                codingLanguages.map(language => (
+                  <li key={language.id} class="nav-item">
+                    <button className="btn btn-primary">{language.title}</button>
+                  </li>
+                ))
+              }
             </ul>
           </div>
 
-          <div class="card-body">
-            <h4 class="card-title">HTML</h4>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
+          {codingLanguages.map(language => (
+            <div class="card-body">
+              <h4>{language.title}</h4>
+              <p>{language.content}</p>
+            </div>
+          ))}
+
         </div>
       </div>
     </>
