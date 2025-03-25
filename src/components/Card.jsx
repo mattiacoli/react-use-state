@@ -8,36 +8,57 @@ export default function CardList({ codingLanguages }) {
 
     <div className="container mt-4">
 
-      <ul class="nav nav-pills card-header-pills gap-3 my-3">
-        {
-          codingLanguages.map(language => (
-            <li key={language.id} class="nav-item">
-              <button
-                className={`btn ${selectedLanguage?.id === language.id ? 'btn-warning' : 'btn-primary'} fw-bold`}
-                onClick={() => setSelectedLanguage(language)
-                }
-              >{language.title}</button>
-            </li>
-          ))}
-      </ul>
-      {selectedLanguage && (
-        <div className="card mt-4">
-          <div className="card-body">
+      <LanguageButtons
+        codingLanguages={codingLanguages}
+        selectedLanguage={selectedLanguage}
+        setSelectedLanguage={setSelectedLanguage} />
+
+      <LanguageContent
+        selectedLanguage={selectedLanguage} />
+
+
+
+    </div>
+  )
+}
+
+
+
+function LanguageButtons({ codingLanguages, selectedLanguage, setSelectedLanguage }) {
+  return (
+    <ul className="nav nav-pills card-header-pills gap-3 my-3">
+      {codingLanguages.map(language => (
+        <li key={language.id} className="nav-item">
+          <button
+            className={`btn ${selectedLanguage?.id === language.id ? 'btn-warning' : 'btn-primary'} fw-bold`}
+            onClick={() => setSelectedLanguage(language)}>
+            {language.title}
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function LanguageContent({ selectedLanguage }) {
+  return (
+    <div className="card mt-4">
+      <div className="card-body">
+        {selectedLanguage ? (
+          <>
+
             <h5 className="card-title">{selectedLanguage.title}</h5>
             <p className="card-text">{selectedLanguage.content}</p>
-          </div>
-        </div>
-      ) || (
-          <div className="card mt-4">
-            <div className="card-body">
-              <h5 className="card-title">Nessun linguaggio selezionato</h5>
-              <p className="card-text"></p>
-            </div>
-          </div>
+
+          </>
+
+        ) : (
+          <>
+            <h5 className="card-title">Nessun linguaggio selezionato</h5>
+            <p className="card-text"></p>
+          </>
         )}
-
-
-
+      </div>
     </div>
   )
 }
